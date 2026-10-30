@@ -25,6 +25,12 @@ jobs:
           channel: 'stable'
           cache: true
 
+      # Force-regenerate platform files to guarantee android/app/build.gradle exists
+      - name: Create Platform Files
+        run: |
+          rm -rf android ios linux macos windows web
+          flutter create . --platforms=android --project-name=texture_mapper_app
+
       - name: Install Dependencies
         run: flutter pub get
 
